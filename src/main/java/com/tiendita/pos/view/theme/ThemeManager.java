@@ -9,6 +9,8 @@ import java.awt.*;
 
 /**
  * Gestor de temas visuales del sistema POS (Soporte nativo Claro/Oscuro).
+ * Incorporamos colores de alto contraste y definimos defaults de UI para asegurar
+ * legibilidad en ambos modos.
  */
 public class ThemeManager {
     private static boolean isDarkMode = true; // Por defecto moderno en Oscuro
@@ -18,10 +20,13 @@ public class ThemeManager {
     public static final Color COLOR_SUCCESS = new Color(5, 150, 105);    // Esmeralda (#059669)
     public static final Color COLOR_DANGER = new Color(220, 38, 38);     // Rojo Alerta (#DC2626)
     public static final Color COLOR_WARNING = new Color(217, 119, 6);    // Ámbar (#D97706)
-    
+
     // Colores de soporte para bordes y fondos de tarjetas
     public static final Color CARD_BG_DARK = new Color(30, 41, 59);      // Slate 800 (#1E293B)
     public static final Color CARD_BG_LIGHT = new Color(248, 250, 252);  // Slate 50 (#F8FAFC)
+
+
+
 
     /**
      * Aplica el tema guardado al sistema.
@@ -30,19 +35,23 @@ public class ThemeManager {
         try {
             if (isDarkMode) {
                 UIManager.setLookAndFeel(new FlatDarkLaf());
-                UIManager.put("Button.arc", 12);
-                UIManager.put("Component.arc", 12);
-                UIManager.put("TextComponent.arc", 12);
-                UIManager.put("ProgressBar.arc", 12);
             } else {
                 UIManager.setLookAndFeel(new FlatLightLaf());
-                UIManager.put("Button.arc", 12);
-                UIManager.put("Component.arc", 12);
-                UIManager.put("TextComponent.arc", 12);
-                UIManager.put("ProgressBar.arc", 12);
             }
-            
-            // Configurar propiedades avanzadas de FlatLaf
+            // Configuración de componentes de FlatLaf
+            UIManager.put("Button.arc", 12);
+            UIManager.put("Component.arc", 12);
+            UIManager.put("TextComponent.arc", 12);
+            UIManager.put("ProgressBar.arc", 12);
+
+            // Definir colores de texto y fondo para alto contraste
+            UIManager.put("Label.foreground", getTextColor());
+            UIManager.put("Panel.background", getCardBackground());
+            UIManager.put("Table.background", getCardBackground());
+            UIManager.put("Table.foreground", getTextColor());
+            UIManager.put("Table.gridColor", isDarkMode ? Color.DARK_GRAY : Color.LIGHT_GRAY);
+
+            // Actualizar UI
             FlatLaf.updateUI();
         } catch (Exception ex) {
             System.err.println("Fallo al aplicar el Look & Feel de FlatLaf: " + ex.getMessage());
@@ -55,7 +64,6 @@ public class ThemeManager {
     public static void toggleTheme(Window parentWindow) {
         isDarkMode = !isDarkMode;
         applyTheme();
-        
         // Forzar repintado completo de la interfaz de forma recursiva
         if (parentWindow != null) {
             SwingUtilities.updateComponentTreeUI(parentWindow);
@@ -71,7 +79,7 @@ public class ThemeManager {
     public static Color getCardBackground() {
         return isDarkMode ? CARD_BG_DARK : CARD_BG_LIGHT;
     }
-    
+
     public static Color getTextColor() {
         return isDarkMode ? Color.WHITE : Color.BLACK;
     }

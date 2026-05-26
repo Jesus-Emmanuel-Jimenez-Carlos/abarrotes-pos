@@ -106,6 +106,58 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <executions>
+                    <execution>
+                        <id>package-mac</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jpackage</goal>
+                        </goals>
+                        <configuration>
+                            <appName>AbarrotesPOS</appName>
+                            <mainClass>com.tiendita.pos.App</mainClass>
+                            <vendor>Tiendita</vendor>
+                            <icon>src/main/resources/icon.png</icon>
+                            <type>dmg</type>
+                            <runtimeImage>${java.home}</runtimeImage>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>package-windows</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jpackage</goal>
+                        </goals>
+                        <configuration>
+                            <appName>AbarrotesPOS</appName>
+                            <mainClass>com.tiendita.pos.App</mainClass>
+                            <vendor>Tiendita</vendor>
+                            <icon>src/main/resources/icon.ico</icon>
+                            <type>msi</type>
+                            <runtimeImage>${java.home}</runtimeImage>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>package-linux</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jpackage</goal>
+                        </goals>
+                        <configuration>
+                            <appName>AbarrotesPOS</appName>
+                            <mainClass>com.tiendita.pos.App</mainClass>
+                            <vendor>Tiendita</vendor>
+                            <icon>src/main/resources/icon.png</icon>
+                            <type>tar.gz</type>
+                            <runtimeImage>${java.home}</runtimeImage>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
