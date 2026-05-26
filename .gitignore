@@ -1,0 +1,28 @@
+# Compilación y empaquetado Maven
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Base de datos local y respaldos de seguridad
+data/
+backups/
+*.db
+*.sql
+
+# Logs
+*.log
+logs/
+
+# IDEs (IntelliJ IDEA, Eclipse, VS Code)
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+.vscode/
+
+# Metadatos del Sistema Operativo
+.DS_Store
+Thumbs.db
