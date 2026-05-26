@@ -121,7 +121,52 @@ The application is engineered using a highly-decoupled, layered **Model-View-Con
 
 ---
 
-## ⚡ Setup & Execution Instructions
+## ⚡ Instalación y Uso para Usuarios Finales
+
+### Descarga del instalador
+- **macOS**: descarga `AbarrotesPOS-1.0.0.dmg` desde la sección *Releases* del repositorio.
+- **Windows**: descarga `AbarrotesPOS-1.0.0.msi`.
+- **Linux**: descarga `AbarrotesPOS-1.0.0.tar.gz`.
+🔗 Descarga los instaladores en: https://github.com/Jesus-Emmanuel-Jimenez-Carlos/abarrotes-pos/releases
+
+### Instalación
+- **macOS**: abre el `.dmg`, arrastra el ícono a la carpeta **Aplicaciones**.
+- **Windows**: ejecuta el archivo `.msi` y sigue el asistente.
+- **Linux**: descomprime el `.tar.gz`, otorga permiso de ejecución (`chmod +x AbarrotesPOS`) y ejecuta `./AbarrotesPOS`.
+
+### Primer arranque
+Al iniciar por primera vez la aplicación crea automáticamente una carpeta **data** y el fichero `abarrotes.db`. Se genera un usuario administrador por defecto:
+
+| Usuario | Contraseña |
+|--------|------------|
+| `admin`| `admin123` |
+
+> **Importante**: cambia la contraseña desde *Configuración → Cambiar contraseña*.
+
+### Uso básico
+- Inicia sesión con el usuario admin.
+- Navega por el menú: **Inventario**, **Ventas**, **Proveedores**, **Reportes**.
+- Cambia entre modo claro/oscuro con el botón *Tema* en la barra de menú.
+
+---
+
+## 🛠️ Desarrollo (para programadores)
+
+### Requisitos
+- **Java 17+** y **Maven** instalados.
+
+### Compilación y empaquetado
+```bash
+git clone https://github.com/Jesus-Emmanuel-Jimenez-Carlos/abarrotes-pos.git
+cd abarrotes-pos
+mvn clean package
+```
+Los instaladores nativos se generarán en `target/`.
+
+### Ejecutar directamente (opcional)
+```bash
+java -jar target/abarrotes-pos-1.0.0-jar-with-dependencies.jar
+```
 
 Ensure you have **Java 17+** and **Maven** installed on your system.
 

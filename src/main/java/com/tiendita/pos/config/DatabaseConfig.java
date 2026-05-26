@@ -71,9 +71,10 @@ public class DatabaseConfig {
             String[] queries = schemaSql.split(";");
             for (String query : queries) {
                 String trimmedQuery = query.trim();
-                if (!trimmedQuery.isEmpty()) {
-                    stmt.execute(trimmedQuery);
+                if (trimmedQuery.isEmpty() || trimmedQuery.startsWith("--")) {
+                    continue;
                 }
+                stmt.execute(trimmedQuery);
             }
             System.out.println("Esquema de base de datos aplicado correctamente.");
 
